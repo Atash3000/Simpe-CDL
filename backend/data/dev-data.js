@@ -1,0 +1,1 @@
+module.exports = ['new york','alabama','texas','florida','montana','ohio']
