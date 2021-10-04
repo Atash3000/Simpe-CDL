@@ -2,93 +2,92 @@ import React from 'react'
 import {
   View,
   Text,
+  SafeAreaView,
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
 } from 'react-native'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import image from '../images/truck-8.jpg'
 import colors from '../helpers/colors'
 import { AntDesign } from '@expo/vector-icons'
 import { capitalize } from '../helpers/functions'
 
 const WelcomePage = ({ navigation }) => {
-  const skipToMainPage = () => {
-    navigation.navigate('Home')
-  }
-
-  const goToLoginPage = () => {
-    navigation.navigate('Login')
-  }
-
   return (
-    <ImageBackground source={image} resizeMode="cover" style={{ flex: 1 }}>
+    <BackgroundImage source={image} resizeMode="cover">
       <Container>
-        <TouchableOpacity
-          onPress={skipToMainPage}
-          style={styles.btnSkip}
+        <SkipButton
+          onPress={() => navigation.navigate('Home')}
           activeOpacity={0.7}
         >
           <Text style={styles.skip}>skip</Text>
-          <AntDesign name="arrowright" size={20} color={colors.black} />
-        </TouchableOpacity>
+          <ArrowRight name="arrowright" />
+        </SkipButton>
         <LogoBox>
-          <Text style={styles.simple}>{capitalize('simple')}</Text>
+          <Text style={styles.simple}>simple</Text>
           <Text style={styles.cdl}>{'cdl'.toLocaleUpperCase()}</Text>
         </LogoBox>
         <View style={styles.welcomeBox}>
           <Heading>
             {capitalize('welcome')} to {'cdl'.toUpperCase()} practice test
           </Heading>
-          <TouchableOpacity
-            onPress={goToLoginPage}
-            style={styles.button}
+          <ButtonContinue
+            onPress={() => navigation.navigate('Login')}
             activeOpacity={0.7}
           >
             <Text style={styles.text}>continue</Text>
-            <AntDesign name="arrowright" size={26} color={colors.black} />
-          </TouchableOpacity>
+            <ArrowRight name="arrowright" />
+          </ButtonContinue>
         </View>
       </Container>
-    </ImageBackground>
+    </BackgroundImage>
   )
 }
 
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`
+
+const ArrowRight = styled(AntDesign)`
+  color: ${colors.blackLight};
+  font-size: 24px;
+`
+
+const ButtonContinue = styled(TouchableOpacity)`
+  width: 100%;
+  background-color: ${colors.primary};
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px;
+`
+
+const SkipButton = styled(TouchableOpacity)`
+  position: absolute;
+  background-color: ${colors.whiteLight};
+    top: 8%;
+  right: 3%;
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
 const styles = StyleSheet.create({
-  button: {
-    width: '100%',
-    backgroundColor: colors.primary,
-    borderRadius: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    // marginBottom: 30,
-
-    padding: 12,
-  },
-  btnSkip: {
-    position: 'absolute',
-    backgroundColor: colors.whiteLight,
-    top: '8%',
-    right: '3%',
-    paddingHorizontal: '10%',
-    paddingVertical: 6,
-
-    borderRadius: 78,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  button: {},
 
   skip: {
     textAlign: 'center',
     fontSize: 16,
     marginHorizontal: 7,
     letterSpacing: 1,
-    fontWeight: '500',
+    fontWeight: '600',
     color: colors.blackLight,
     textTransform: 'capitalize',
   },
@@ -104,6 +103,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 35,
     fontWeight: '700',
+    textTransform: 'capitalize',
   },
   cdl: {
     color: colors.white,
@@ -132,7 +132,7 @@ const LogoBox = styled.View`
   border-radius: 200px;
 `
 
-const WelcomeBox = styled.View``
+
 
 const Heading = styled.Text`
   font-size: 22px;
