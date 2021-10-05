@@ -7,7 +7,7 @@ import CoursePage from './components/screens/CoursePage'
 import { Provider } from 'react-redux'
 import WelcomePage from './components/screens/WelcomePage'
 import LoginPage from './components/screens/LoginPage'
-
+import AppLoading from 'expo-app-loading'
 const Stack = createNativeStackNavigator()
 
 import QuestionPage from './components/screens/QuestionPage'

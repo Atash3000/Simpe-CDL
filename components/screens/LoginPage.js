@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AntDesign } from '@expo/vector-icons'
-import axios from 'axios'
+
 import {
-  View,
+
   Text,
-  TextInput,
+
   StyleSheet,
   Keyboard,
-  Platform,
-  KeyboardAvoidingView,
+
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import colors from '../helpers/colors'
 import { capitalize } from '../helpers/functions'
 
 import PhoneInput from 'react-native-phone-number-input'
-import { useSelector, useDispatch } from 'react-redux'
+import {useDispatch } from 'react-redux'
 
 import { createNewUser } from '../../store/actions/userActions'
 
@@ -28,7 +27,7 @@ const LoginPage = ({ navigation }) => {
 
   const nextButtonHandler = () => {
     Keyboard.dismiss()
-    navigation.replace('ConfirmPage')
+    navigation.navigate('ConfirmPage')
     dispatch(createNewUser(formattedValue))
   }
 

@@ -25,7 +25,7 @@ const MainPage = (props) => {
     navigation.navigate('Course', { slug: stateName })
   }
   const goBackToPrevPage = () => {
-    navigation.goBack()
+    navigation.navigate('Welcome')
   }
 
   return (

@@ -1,64 +1,61 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Text } from 'react-native'
+import { KeyboardAvoidingView, Text } from 'react-native'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import CodeInput from 'react-native-confirmation-code-input'
 import colors from '../helpers/colors'
 
 import { capitalize, makeNumberLookGood } from '../helpers/functions'
-import axios from 'axios'
 
-const ConfirmPage = (props) => {
 
+const ConfirmPage = ({navigation}) => {
+const [enteredCodeIsValid,setEnteredCodeIsValid] = useState(false)
   const userInfoFromServer = useSelector((state) => state.userRegister)
-  const { error, loading, userData ,userNumber} = userInfoFromServer
- // const { phoneNumber, verificationNumber } = userData
+  const { error, loading, userNumber, userVerificationNumber } =
+    userInfoFromServer
+
   console.log(userInfoFromServer)
- // console.log(userInfoFromServer)
 
 
-  // const getVerificationCodeFromServer = async (userNum) => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `http://172.20.10.2:5050/api/v1/users/1${userNum}`
-  //     )
-
-  //     const { verificationNumber: vnum, phoneNumber } = data.data.user
-  //     setVerifiactionNumber(vnum)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  let userNumStyled = (
-    <Text style={{ fontWeight: 'bold' }}>{makeNumberLookGood(userNumber)}</Text>
-  )
+  const userVerNumToString = userVerificationNumber ? userVerificationNumber.toString() : '';
+  useEffect(() => {
+    if (enteredCodeIsValid) {
+     
+      navigation.replace('Home')
+    }
+},[enteredCodeIsValid])
 
   return (
-    <Container>
-      <TextBox>
-        <Text style={{ fontSize: 20 }}>
-          {capitalize('enter')} a 4 digit code that you recived on number &nbsp;
-          {userNumStyled}
-        </Text>
-      </TextBox>
-      <CodeBox>
-        <CodeInput
-          keyboardType="numeric"
-          secureTextEntry={false}
-          compareWithCode="112344"
-          activeColor={colors.blackLight}
-          inactiveColor={colors.black}
-          autoFocus={true}
-          ignoreCase={true}
-          codeLength={4}
-          inputPosition="center"
-          size={60}
-          className="border-circle"
-          codeInputStyle={{ borderWidth: 2, fontWeight: '500', fontSize: 25 }}
-        />
-      </CodeBox>
-    </Container>
+    <KeyboardAvoidingView style={{ flex: 1 }}>
+      <Container>
+        <TextBox>
+          <Text style={{ fontSize: 20 }}>
+            {capitalize('enter')} a 4 digit code that you recived on number
+            &nbsp;
+            <Text style={{ fontWeight: 'bold' }}>
+              {makeNumberLookGood(userNumber)}
+            </Text>
+          </Text>
+        </TextBox>
+        <CodeBox>
+          <CodeInput
+            keyboardType="numeric"
+            secureTextEntry={false}
+            compareWithCode={userVerNumToString}
+            activeColor={colors.blackLight}
+            inactiveColor={colors.black}
+            autoFocus={true}
+            ignoreCase={true}
+            codeLength={4}
+            inputPosition="center"
+            size={60}
+            className="border-circle"
+            onFulfill={setEnteredCodeIsValid}
+            codeInputStyle={{ borderWidth: 2, fontWeight: '500', fontSize: 25 }}
+          />
+        </CodeBox>
+      </Container>
+    </KeyboardAvoidingView>
   )
 }
 

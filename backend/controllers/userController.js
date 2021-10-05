@@ -22,11 +22,11 @@ exports.createUser = catchAsync(async (req, res, next) => {
   // }
 
   const user = await User.findOne({ phoneNumber: userPhoneNum })
-  let newUser = undefined
+  let newUser = {}
   const filter = { 'phoneNumber': userPhoneNum }
   const update = { 'verificationNumber': randomNumber }
   if (user) {
-   newUser = await User.findOneAndUpdate(filter, update, {
+   await User.findOneAndUpdate(filter, update, {
      new: true,
    })
 

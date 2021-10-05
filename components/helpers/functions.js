@@ -8,7 +8,9 @@ export const capitalize = (val)=>{
 
 
 export const makeNumberLookGood = (number) => {
-    let arr = number.toString().split('')
+  if (!number) return;
+  let string = number.toString()
+    let arr = string.split('')
     let fist3Digits = arr.slice(2, 5).join('')
     let second3Digits = arr.slice(5, 8).join('')
     let last4Digits = arr.slice(8).join('')

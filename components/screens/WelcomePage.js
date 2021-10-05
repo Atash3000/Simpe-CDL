@@ -2,7 +2,6 @@ import React from 'react'
 import {
   View,
   Text,
-  SafeAreaView,
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
@@ -27,7 +26,7 @@ const WelcomePage = ({ navigation }) => {
         </SkipButton>
         <LogoBox>
           <Text style={styles.simple}>simple</Text>
-          <Text style={styles.cdl}>{'cdl'.toLocaleUpperCase()}</Text>
+          <Text style={styles.cdl}>cdl</Text>
         </LogoBox>
         <View style={styles.welcomeBox}>
           <Heading>
@@ -58,7 +57,6 @@ const ArrowRight = styled(AntDesign)`
 const ButtonContinue = styled(TouchableOpacity)`
   width: 100%;
   background-color: ${colors.primary};
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -69,7 +67,7 @@ const ButtonContinue = styled(TouchableOpacity)`
 const SkipButton = styled(TouchableOpacity)`
   position: absolute;
   background-color: ${colors.whiteLight};
-    top: 8%;
+  top: 8%;
   right: 3%;
   padding: 10px 20px;
   border-radius: 50px;
@@ -80,8 +78,6 @@ const SkipButton = styled(TouchableOpacity)`
 `
 
 const styles = StyleSheet.create({
-  button: {},
-
   skip: {
     textAlign: 'center',
     fontSize: 16,
@@ -109,6 +105,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 40,
     fontWeight: '700',
+    textTransform: 'uppercase',
   },
   welcomeBox: {
     backgroundColor: colors.whiteLight,
@@ -131,8 +128,6 @@ const LogoBox = styled.View`
 
   border-radius: 200px;
 `
-
-
 
 const Heading = styled.Text`
   font-size: 22px;
