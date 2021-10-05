@@ -5,7 +5,6 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity,
 } from 'react-native'
 import colors from '../helpers/colors'
 import primaryImage from '../images/primary.png'

@@ -7,15 +7,19 @@ import { getData } from './storage/asyncStorage';
 
 
     
-
+let res = getData('userInfo').then(response=>console.log(response))
        
 const initailState = {
-
+  userLogin: {
+    selectedState: 1235,
+    //userInfo: getData('userInfo'),
+  },
 }
 
 const reducer = combineReducers({
   userRegister: userSigUpReducer,
   userLogin: userLogedInReducers,
+ 
 })
 
 const store = createStore(reducer, initailState, applyMiddleware(thunk))

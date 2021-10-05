@@ -17,9 +17,9 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 exports.createUser = catchAsync(async (req, res, next) => {
   const randomNumber = Math.floor(1000 + Math.random() * 9000)
   const userPhoneNum = req.body.phoneNumber
-  //  if (userPhoneNum) {
-  //   await sendSMS(userPhoneNum, randomNumber)
-  // }
+   if (userPhoneNum) {
+    await sendSMS(userPhoneNum, randomNumber)
+  }
 
   const user = await User.findOne({ phoneNumber: userPhoneNum })
   let newUser = {}

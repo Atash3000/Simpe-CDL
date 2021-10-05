@@ -16,6 +16,7 @@ import QuestionPage from './components/screens/QuestionPage'
 import ConfirmPage from './components/screens/ConfirmPage'
 
 import { userLoggedInStatus } from './store/actions/userActions'
+import AppNavigation from './navigation/AppNavigation'
 
 function Root() {
   const [userInfo, setUserInfo] = useState({})
@@ -31,7 +32,7 @@ function Root() {
     return false
   })
   console.log(userLogin)
-  console.log(userInfo)
+ 
   // console.log(userInfoFromServer,'userreguster')
 
   const getDateFromStorage = async () => {
@@ -57,23 +58,13 @@ function Root() {
 
  // console.log(userInfo, 'userinforrrrrr')
 
-  if (loading===true) {
-    return <AppLoading />
-  }
+  // if (loading) {
+  //   return <AppLoading />
+  // }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={isLoggedIn ? 'Home' : 'Welcome'}
-      >
-        <Stack.Screen name="Welcome" component={WelcomePage} />
-        <Stack.Screen name="ConfirmPage" component={ConfirmPage} />
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="Home" component={MainPage} />
-        <Stack.Screen name="Question" component={QuestionPage} />
-        <Stack.Screen name="Course" component={CoursePage} />
-      </Stack.Navigator>
+      <AppNavigation isLoggedIn={isLoggedIn}/>
     </NavigationContainer>
   )
 }
