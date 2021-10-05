@@ -18,13 +18,20 @@ import ConfirmPage from './components/screens/ConfirmPage'
 import { userLoggedInStatus } from './store/actions/userActions'
 
 function Root() {
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState({})
   const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin)
-  console.log(userLogin)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { error, loading,userVerificationNumber} = userLogin
 
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    if (userVerificationNumber === userInfo["verificationCode"]) {
+      return true
+    }
+    return false
+  })
+  console.log(userLogin)
+  console.log(userInfo)
   // console.log(userInfoFromServer,'userreguster')
 
   const getDateFromStorage = async () => {
@@ -48,11 +55,11 @@ function Root() {
     }
   }, [userInfo])
 
-  console.log(userInfo, 'userinforrrrrr')
+ // console.log(userInfo, 'userinforrrrrr')
 
-  // if (!userInfo) {
-  //   return <AppLoading />
-  // }
+  if (loading===true) {
+    return <AppLoading />
+  }
 
   return (
     <NavigationContainer>

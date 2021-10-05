@@ -29,14 +29,19 @@ export const userSigUpReducer = (state =initState, action) => {
 
 
 
-export const userLogedInReducers = (state = {error:null,loading:false,isLoggedIn:false}, action) => {
+export const userLogedInReducers = (state = {loading:false}, action) => {
   switch (action.type) {
     case USER_LOGGED_IN_REQUEST:
-      return { ...state, loading: true,isLoggedIn:false }
+      return { ...state, loading: true}
     case USER_LOGGED_IN_SUCCESS:
-      return { ...state, loading: false, logStatus: action.payload,isLoggedIn:true };
+      return {
+        ...state,
+        loading:false,
+        userNumber: action.phoneNumber,
+        userVerificationNumber: action.verificationCode,
+      }
     case USER_LOGGED_IN_FAIL:
-      return { ...state, loading: false, error: action.payload,isLoggedIn:false }
+      return { ...state, error: action.payload }
     default :return state
   }
 }

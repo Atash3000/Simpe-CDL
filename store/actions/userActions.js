@@ -55,7 +55,8 @@ export const userLoggedInStatus = (phoneNumber) =>async(dispatch)=> {
     )
     dispatch({
       type: USER_LOGGED_IN_SUCCESS,
-      payload:data.data.user
+      phoneNumber: data.data.user.phoneNumber,
+      verificationCode : data.data.user.verificationNumber
     })
   } catch (error) {
      const message =
