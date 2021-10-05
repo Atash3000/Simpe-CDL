@@ -10,10 +10,7 @@ import { getData } from './storage/asyncStorage';
 
        
 const initailState = {
-  userRegister: {
-    userDataInStorage: 555,
 
-  },
 }
 
 const reducer = combineReducers({

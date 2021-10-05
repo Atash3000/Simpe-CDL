@@ -23,33 +23,34 @@ exports.createUser = catchAsync(async (req, res, next) => {
 
   const user = await User.findOne({ phoneNumber: userPhoneNum })
   let newUser = {}
-  const filter = { 'phoneNumber': userPhoneNum }
-  const update = { 'verificationNumber': randomNumber }
+  const filter = { phoneNumber: userPhoneNum }
+  const update = { verificationNumber: randomNumber }
   if (user) {
-   await User.findOneAndUpdate(filter, update, {
-     new: true,
-   })
-
+    newUser = await User.findOneAndUpdate(filter, update, {
+      new: true,
+    })
   } else {
     newUser = await User.create({
       phoneNumber: userPhoneNum,
       verificationNumber: randomNumber,
-    })
+    }).select(['phoneNumber', 'verificationNumber', '-_id'])
   }
 
-  const { phoneNumber, verificationNumber } = newUser
   res.status(201).json({
     status: 'Succsess',
     data: {
-      verificationNumber,
-      phoneNumber,
+      newUser,
     },
   })
 })
 
 exports.getUserByPhoneNumber = catchAsync(async (req, res, next) => {
   const userNumber = req.params.phoneNumber
-  const user = await User.findOne({ phoneNumber: userNumber })
+  const user = await User.findOne({ phoneNumber: userNumber }).select([
+    'phoneNumber',
+    'verificationNumber',
+    '-_id',
+  ])
 
   res.status(200).json({
     status: 'Succsess',

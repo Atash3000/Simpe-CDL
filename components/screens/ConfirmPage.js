@@ -14,7 +14,7 @@ const [enteredCodeIsValid,setEnteredCodeIsValid] = useState(false)
   const { error, loading, userNumber, userVerificationNumber } =
     userInfoFromServer
 
-  console.log(userInfoFromServer)
+ // console.log(userInfoFromServer)
 
 
   const userVerNumToString = userVerificationNumber ? userVerificationNumber.toString() : '';

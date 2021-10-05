@@ -21,13 +21,15 @@ export const createNewUser = (userNumber) => async (dispatch) => {
     const {data} = await axios.post('http://172.20.10.2:5050/api/v1/users', {
       phoneNumber: userNumber,
     })
-    dispatch({
-      type: USER_SIGNUP_SUCCESS,
-      number: data.data.phoneNumber,
-      verificationCode:data.data.verificationNumber
-    })
+    const number = data.data.newUser.phoneNumber
+    const verificationCode = data.data.newUser.verificationNumber
+      dispatch({
+        type: USER_SIGNUP_SUCCESS,
+        number: number,
+        verificationCode: verificationCode,
+      })
 
-    await storeData('userInfo','123')
+    await storeData('userInfo',{number,verificationCode})
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -42,10 +44,10 @@ export const createNewUser = (userNumber) => async (dispatch) => {
 
 
 
-export const userLoggedInStatus = (status,phoneNumber) =>async(dispatch)=> {
+export const userLoggedInStatus = (phoneNumber) =>async(dispatch)=> {
   dispatch({
     type: USER_LOGGED_IN_REQUEST,
-    payload:status
+    payload:phoneNumber
   })
   try {
     const { data } = await axios.get(
@@ -53,7 +55,7 @@ export const userLoggedInStatus = (status,phoneNumber) =>async(dispatch)=> {
     )
     dispatch({
       type: USER_LOGGED_IN_SUCCESS,
-      payload:data.data
+      payload:data.data.user
     })
   } catch (error) {
      const message =
