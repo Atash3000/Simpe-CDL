@@ -2,6 +2,7 @@ import {
   USER_LOGGED_IN_FAIL,
   USER_LOGGED_IN_REQUEST,
   USER_LOGGED_IN_SUCCESS,
+  USER_LOG_OUT,
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
   USER_SIGN_IN_FAIL,
@@ -11,8 +12,8 @@ import {
 const initState = {
   loading: false,
   error: null,
-  userVerificationNumber:undefined,
-  userNumber:undefined
+  userVerificationNumber:'',
+  userNumber:''
 }
 export const userSigUpReducer = (state =initState, action) => {
   switch (action.type) {
@@ -28,20 +29,28 @@ export const userSigUpReducer = (state =initState, action) => {
 }
 
 
-
-export const userLogedInReducers = (state = {loading:false}, action) => {
+const initState2 = {
+  loading: false,
+  error: null,
+  userVerificationNumber: '',
+  userNumber: '',
+}
+export const userLogedInReducers = (state = initState2, action) => {
   switch (action.type) {
     case USER_LOGGED_IN_REQUEST:
-      return { ...state, loading: true}
+      return { ...state, loading: true }
     case USER_LOGGED_IN_SUCCESS:
       return {
         ...state,
-        loading:false,
+        loading: false,
         userNumber: action.phoneNumber,
         userVerificationNumber: action.verificationCode,
       }
     case USER_LOGGED_IN_FAIL:
       return { ...state, error: action.payload }
-    default :return state
+    case USER_LOG_OUT:
+      return {}
+    default:
+      return state
   }
 }

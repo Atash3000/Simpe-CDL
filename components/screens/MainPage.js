@@ -16,6 +16,7 @@ import {
 } from 'react-native'
 import { capitalize } from '../helpers/functions'
 import NavigateBack from '../utils/NavigateBack'
+import Logout from '../utils/Logout'
 
 const MainPage = (props) => {
   const { navigation } = props
@@ -34,7 +35,9 @@ const MainPage = (props) => {
       resizeMode="repeat"
       style={styles.bgImage}
     >
+     
       <NavigateBack goBackToPrevPage={goBackToPrevPage} />
+
       <Main>
         <Text style={styles.heading}> {capitalize('select')} your state</Text>
         <Inner>

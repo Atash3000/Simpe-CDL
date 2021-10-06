@@ -33,13 +33,15 @@ exports.createUser = catchAsync(async (req, res, next) => {
     newUser = await User.create({
       phoneNumber: userPhoneNum,
       verificationNumber: randomNumber,
-    }).select(['phoneNumber', 'verificationNumber', '-_id'])
+    })
   }
+  const {phoneNumber,verificationNumber} = newUser
 
   res.status(201).json({
     status: 'Succsess',
     data: {
-      newUser,
+      phoneNumber,
+      verificationNumber,
     },
   })
 })

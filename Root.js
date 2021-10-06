@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -17,22 +18,18 @@ import ConfirmPage from './components/screens/ConfirmPage'
 
 import { userLoggedInStatus } from './store/actions/userActions'
 import AppNavigation from './navigation/AppNavigation'
+import DrawNavigation from './navigation/DrawNavigation'
 
 function Root() {
   const [userInfo, setUserInfo] = useState({})
   const dispatch = useDispatch()
-
+  // console.log(userInfo)
   const userLogin = useSelector((state) => state.userLogin)
-  const { error, loading,userVerificationNumber} = userLogin
+  const { error, loading, userVerificationNumber } = userLogin
 
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    if (userVerificationNumber === userInfo["verificationCode"]) {
-      return true
-    }
-    return false
-  })
-  console.log(userLogin)
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // console.log(userLogin)
+
   // console.log(userInfoFromServer,'userreguster')
 
   const getDateFromStorage = async () => {
@@ -55,17 +52,23 @@ function Root() {
       dispatch(userLoggedInStatus(userInfo['number']))
     }
   }, [userInfo])
-
- // console.log(userInfo, 'userinforrrrrr')
+  useEffect(() => {
+    if (userVerificationNumber) {
+      setIsLoggedIn(userVerificationNumber === userInfo['verificationCode'])
+    }
+  }, [userVerificationNumber])
+  // console.log(userInfo, 'userinforrrrrr')
 
   // if (loading) {
   //   return <AppLoading />
-  // }
-
+  // }  <AppNavigation isLoggedIn={isLoggedIn} />
+  //console.log(userVerificationNumber, 'vernum')
   return (
-    <NavigationContainer>
-      <AppNavigation isLoggedIn={isLoggedIn}/>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <DrawNavigation />
+      </NavigationContainer>
+    </>
   )
 }
 

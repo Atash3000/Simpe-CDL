@@ -5,9 +5,11 @@ import {
   USER_SIGNUP_FAIL,
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
+  USER_LOG_OUT,
 } from '../constants/userConstants'
 import axios from 'axios'
 import { storeData } from '../storage/asyncStorage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 
@@ -21,8 +23,8 @@ export const createNewUser = (userNumber) => async (dispatch) => {
     const {data} = await axios.post('http://172.20.10.2:5050/api/v1/users', {
       phoneNumber: userNumber,
     })
-    const number = data.data.newUser.phoneNumber
-    const verificationCode = data.data.newUser.verificationNumber
+    const number = data.data.phoneNumber
+    const verificationCode = data.data.verificationNumber
       dispatch({
         type: USER_SIGNUP_SUCCESS,
         number: number,
@@ -70,4 +72,13 @@ export const userLoggedInStatus = (phoneNumber) =>async(dispatch)=> {
     })
   }
   
+}
+
+
+export const logout = () => async(dispatch) => {
+ await AsyncStorage.removeItem('userInfo')
+  dispatch({
+    type: USER_LOG_OUT,
+    payload:{}
+  })
 }

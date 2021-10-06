@@ -13,6 +13,7 @@ import { questions } from '../helpers/data'
 import CourseItem from '../utils/CourseItem'
 import NavigateBack from '../utils/NavigateBack'
 import { capitalize } from '../helpers/functions'
+import Logout from '../utils/Logout'
 
 
 
@@ -28,9 +29,13 @@ const CoursePage = (props) => {
     navigation.navigate('Question',{testType:testType})
   }
   return (
-    <ImageBackground source={primaryImage} resizeMode='repeat' style={styles.bgImg}>
+    <ImageBackground
+      source={primaryImage}
+      resizeMode="repeat"
+      style={styles.bgImg}
+    >
       <NavigateBack goBackToPrevPage={() => navigation.goBack()} />
-
+      <Logout navigation={navigation} />
       <View style={styles.top}>
         <Text
           style={[
