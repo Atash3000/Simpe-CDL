@@ -4,6 +4,7 @@ import colors from '../helpers/colors'
 import styled from 'styled-components'
 import { questions } from '../helpers/data'
 import NavigateBack from '../utils/NavigateBack'
+import Hamburger from '../utils/Hamburger'
 
 const QuestionPage = (props) => {
   const { navigation, route } = props
@@ -21,6 +22,7 @@ const QuestionPage = (props) => {
 
   return (
     <Container>
+      <Hamburger navigation={ navigation}/>
       <NavigateBack
         goBackToPrevPage={() => navigation.goBack()}
         color={colors.white}

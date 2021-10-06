@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -7,24 +8,29 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer'
 import MainPage from '../components/screens/MainPage'
-import AppNavigation from './AppNavigation'
+
 import WelcomePage from '../components/screens/WelcomePage'
+import colors from '../components/helpers/colors'
+import AppNavigation from './AppNavigation'
 const Drawer = createDrawerNavigator()
 function DrawNavigation() {
+  //<Ionicons name="menu-sharp" size={24} color="black" />
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false }}
-      drawerContentOptions={{
-        activeTintColor: '#e91e63',
-        itemStyle: { marginVertical: 5, color: 'red' },
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: colors.whiteDark,
+          width: '65%',
+        },
+        headerShown:false,
+        drawerPosition: 'left',
+        drawerType: 'slide',
+        overlayColor: 'transparent',
+        swipeEnabled: false,
       }}
     >
-      <Drawer.Screen
-        name="ello"
-        options={{ drawerLabel: 'First page Option' }}
-        component={AppNavigation}
-      />
-      <Drawer.Screen name="HEllosss" component={WelcomePage} />
+      <Drawer.Screen name="MainPage" component={AppNavigation} />
+      <Drawer.Screen name="HELLO" component={MainPage} />
     </Drawer.Navigator>
   )
 }

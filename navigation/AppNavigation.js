@@ -12,8 +12,9 @@ function AppNavigation(props) {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={props.isLoggedIn ? "Home":'Welcome'}
+      initialRouteName={props.isLoggedIn ? 'Home' : 'Welcome'}
     >
+  
       <Stack.Screen name="Home" component={MainPage} />
       <Stack.Screen name="Question" component={QuestionPage} />
       <Stack.Screen name="Course" component={CoursePage} />

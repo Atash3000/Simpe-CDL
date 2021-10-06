@@ -1,18 +1,22 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Pressable } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
-const Hamburger = (props) => {
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+const Hamburger = ({navigation}) => {
   return (
-  <View  style={styles.container} >
-    <Entypo name="menu" size={props.size || 24} color="black" />
-  </View>
-    
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.toggleDrawer()}
+    >
+      <Entypo name="menu" size={37} color="white" />
+    </Pressable>
   )
 }
 const styles = StyleSheet.create({
   container: {
-    top: '10%',
-    right: 45,
+    top: '7%',
+    right: '5%',
+    zIndex:999,
     position: 'absolute',
   },
 })
