@@ -23,8 +23,8 @@ function DrawNavigation() {
           width: '65%',
         },
         headerShown:false,
-        drawerPosition: 'left',
-        drawerType: 'slide',
+        drawerPosition: 'right',
+        drawerType: 'front',
         overlayColor: 'transparent',
         swipeEnabled: false,
       }}
