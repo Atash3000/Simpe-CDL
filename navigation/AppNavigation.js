@@ -6,6 +6,7 @@ import LoginPage from '../components/screens/LoginPage'
 import MainPage from '../components/screens/MainPage'
 import QuestionPage from '../components/screens/QuestionPage'
 import CoursePage from '../components/screens/CoursePage'
+import TestPath from '../components/screens/TestPath'
 const Stack = createNativeStackNavigator()
 
 function AppNavigation(props) {
@@ -14,7 +15,6 @@ function AppNavigation(props) {
       screenOptions={{ headerShown: false }}
       initialRouteName={props.isLoggedIn ? 'Home' : 'Welcome'}
     >
-  
       <Stack.Screen name="Home" component={MainPage} />
       <Stack.Screen name="Question" component={QuestionPage} />
       <Stack.Screen name="Course" component={CoursePage} />

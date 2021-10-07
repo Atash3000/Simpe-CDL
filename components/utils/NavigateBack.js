@@ -13,7 +13,7 @@ const NavigateBack = (props) => {
       style={styles.iconBox}
     >
       <View style={styles.iconInner}>
-        <AntDesign name="left" size={37} color={props.color || colors.blackLight} />
+        <AntDesign name="left" size={37} color={props.color || colors.white} />
         <Text style={ [styles.iconText,props.color]}>back</Text>
       </View>
     </TouchableOpacity>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   iconText: {
     fontSize: 22,
     fontWeight: '500',
-    color:colors.blackLight,
+    color:colors.white,
  
     textTransform: 'capitalize',
   },

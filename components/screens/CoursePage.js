@@ -1,22 +1,16 @@
 import React, { useState } from 'react'
 
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-} from 'react-native'
+import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 import colors from '../helpers/colors'
-import primaryImage from '../images/primary.png'
+import primaryImage from '../images/primary-2.png'
 import { AntDesign } from '@expo/vector-icons'
 import { questions } from '../helpers/data'
 import CourseItem from '../utils/CourseItem'
 import NavigateBack from '../utils/NavigateBack'
 import { capitalize } from '../helpers/functions'
 import Logout from '../utils/Logout'
-
-
-
+import SafeArea from '../utils/SafeArea'
+import styled from 'styled-components'
 
 const CoursePage = (props) => {
   const courseItems = Object.keys(questions)
@@ -25,39 +19,42 @@ const CoursePage = (props) => {
 
   const [selectedState, setSelectedState] = useState(slug)
   const openQuestionPage = (testType) => {
-
-    navigation.navigate('Question',{testType:testType})
+    navigation.navigate('Question', { testType: testType })
   }
   return (
     <ImageBackground
       source={primaryImage}
-      resizeMode="repeat"
-      style={styles.bgImg}
+      resizeMode="cover"
+      style={{ flex: 1 }}
     >
-      <NavigateBack goBackToPrevPage={() => navigation.goBack()} />
-      <Logout navigation={navigation} />
-      <View style={styles.top}>
-        <Text
-          style={[
-            styles.heading,
-            { textTransform: 'uppercase', marginBottom: '5%' },
-          ]}
-        >
-          {selectedState} CDL
-        </Text>
-        <Text style={styles.heading}>{capitalize('select')} test type</Text>
-      </View>
-      <View style={styles.container}>
-        {courseItems.map((el) => (
-          <CourseItem
-            style={styles.box}
-            title={el}
-            textStyle={styles.textStyle}
-            key={el}
-            onPressHandler={openQuestionPage.bind(this, el)}
-          />
-        ))}
-      </View>
+      <SafeArea paddingVertical={20}>
+        <Container>
+          <NavigateBack goBackToPrevPage={() => navigation.goBack()} />
+
+          <View style={styles.top}>
+            <Text
+              style={[
+                styles.heading,
+                { textTransform: 'uppercase', marginBottom: '5%' },
+              ]}
+            >
+              {selectedState} CDL
+            </Text>
+            <Text style={styles.heading}>{capitalize('select')} test type</Text>
+          </View>
+          <View style={styles.container}>
+            {courseItems.map((el) => (
+              <CourseItem
+                style={styles.box}
+                title={el}
+                textStyle={styles.textStyle}
+                key={el}
+                onPressHandler={openQuestionPage.bind(this, el)}
+              />
+            ))}
+          </View>
+        </Container>
+      </SafeArea>
     </ImageBackground>
   )
 }
@@ -70,21 +67,20 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 
-
   heading: {
     fontSize: 25,
     color: colors.blackLight,
     fontWeight: '600',
-    letterSpacing:1,
-   
+    letterSpacing: 1,
   },
   top: {
     alignItems: 'center',
     marginBottom: '10%',
+    backgroundColor:'green',
   },
 
   container: {
-    //backgroundColor: 'white',
+    backgroundColor: 'white',
     width: '100%',
     height: 'auto',
     justifyContent: 'center',
@@ -110,4 +106,12 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
 })
+
+
+const Container = styled(View)`
+flex:1;
+position:relative;
+background-color:red;
+
+`;
 export default CoursePage

@@ -1,31 +1,39 @@
-import React,{useState,useEffect} from 'react'
-import { View, Text } from 'react-native'
+import React, { Fragment } from 'react'
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  StatusBar,
+} from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
+import styled from 'styled-components/native'
 
+import primaryImage from '../images/primary-2.png'
 const TestPath = () => {
-
-  const [data,setData] = useState('')
-  const getDataFromServer = async () => {
-  try {
-    let response = await fetch('http://172.20.10.2:5050/')
-    let responseJson = await response.json()
-    console.log(response)
-    setData(responseJson.message)
-    return responseJson.message
-  } catch (error) {
-    console.error(error)
-  }
-  }
-
-
-  useEffect(() => {
-    getDataFromServer()
-  
-  }, [])
   return (
-    <View style={{ flex:1,backgroundColor:'green',alignItems:'center',paddingTop:'22%'}}>
-      <Text style={{ fontSize: 45 }} >data:{ data}</Text>
-    </View>
+    <Fragment>
+      <BackgroundImage source={primaryImage} resizeMode="cover">
+        <SafeArea>
+          <Container>
+            <Text>jkdfkj</Text>
+          </Container>
+        </SafeArea>
+      </BackgroundImage>
+      <StatusBar barStyle="default" translucent={true} />
+    </Fragment>
   )
 }
 
+const Container = styled(View)`
+  flex: 1;
+ 
+`
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`
+
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+`
 export default TestPath
