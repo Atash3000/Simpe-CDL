@@ -1,14 +1,31 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, Pressable } from 'react-native'
+import styled from 'styled-components'
+import { ProgressBar, Colors } from 'react-native-paper';
+
 
 const CourseItem = (props) => {
-  
-
   return (
-    <TouchableOpacity onPress={props.onPressHandler}  activeOpacity={0.8}  underlayColor='transparent' style={props.style}>
-      <Text  style={props.textStyle} >{ props.title}</Text>
-    </TouchableOpacity>
+    <Card>
+      <Title>{props.title}</Title>
+      <ProgressBar progress={0.4} style={{backgroundColor:'red',padding:10}} />
+    </Card>
   )
 }
+
+const Card = styled(View)`
+  background-color: blue;
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: -7px  10px -3px ;
+`
+
+const Title = styled(Text)`
+  font-size: 20px;
+  text-align: center;
+  background-color: yellow;
+  text-transform: capitalize;
+`
 
 export default CourseItem

@@ -43,7 +43,7 @@ const CoursePage = (props) => {
             <Text style={styles.heading}>{capitalize('select')} test type</Text>
           </View>
           <View style={styles.container}>
-            {courseItems.map((el) => (
+            {courseItems.slice(0,1).map((el) => (
               <CourseItem
                 style={styles.box}
                 title={el}
