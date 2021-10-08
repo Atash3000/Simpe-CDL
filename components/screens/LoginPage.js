@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { AntDesign } from '@expo/vector-icons'
-
 import {
-
   Text,
-
   StyleSheet,
   Keyboard,
-
+  View,
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native'
@@ -16,10 +13,11 @@ import colors from '../helpers/colors'
 import { capitalize } from '../helpers/functions'
 
 import PhoneInput from 'react-native-phone-number-input'
-import {useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { createNewUser } from '../../store/actions/userActions'
 import { StyleSheetManager } from 'styled-components'
+import SafeArea from '../utils/SafeArea'
 
 const LoginPage = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -41,51 +39,60 @@ const LoginPage = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <Container>
-        <Inner>
-          <Heading>{capitalize('enter')} your mobile number</Heading>
-          <SubText>
-            By continuing you may receive an SMS for verification, Message and
-            data rates may apply*.
-          </SubText>
-        </Inner>
-        <InputBox>
-          <PhoneInput
-            defaultCode="US"
-            placeholder="(201) 555-0122"
-            withDarkTheme
-            layout="first"
-            autoFocus
-            onChangeFormattedText={(text) => {
-              setFormattedValue(text)
-            }}
-            containerStyle={{ width: '100%' }}
-          />
-        </InputBox>
-        <ButtonBox>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={styles.prevBtn}
-          >
-            <AntDesign name="arrowleft" size={26} color={colors.black} />
-          </TouchableOpacity>
-          {enteredNumberIsValid && (
-            <TouchableOpacity
-              onPress={nextButtonHandler}
-              activeOpacity={0.8}
-              style={styles.nextBtn}
-            >
-              <Text style={styles.textBtn}>
-                {capitalize('send')} {'sms'.toUpperCase()}
-              </Text>
-              <AntDesign name="arrowright" size={26} color={colors.white} />
-            </TouchableOpacity>
-          )}
-        </ButtonBox>
-      </Container>
+      <BackgroundColor>
+        <SafeArea>
+          <Container>
+            <Inner>
+              <Heading>{capitalize('enter')} your mobile number</Heading>
+              <SubText>
+                By continuing you may receive an SMS for verification, Message
+                and data rates may apply*.
+              </SubText>
+            </Inner>
+            <PhoneInput
+              defaultCode="US"
+              placeholder="(201) 555-0122"
+              withDarkTheme
+              layout="first"
+              autoFocus
+              onChangeFormattedText={(text) => {
+                setFormattedValue(text)
+              }}
+              containerStyle={{ width: '100%', marginTop: 25 }}
+            />
+
+            <ButtonBox>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={styles.prevBtn}
+              >
+                <AntDesign name="arrowleft" size={26} color={colors.black} />
+              </TouchableOpacity>
+              {enteredNumberIsValid && (
+                <TouchableOpacity
+                  onPress={nextButtonHandler}
+                  activeOpacity={0.8}
+                  style={styles.nextBtn}
+                >
+                  <Text style={styles.textBtn}>
+                    {capitalize('send')} {'sms'.toUpperCase()}
+                  </Text>
+                  <AntDesign name="arrowright" size={26} color={colors.white} />
+                </TouchableOpacity>
+              )}
+            </ButtonBox>
+          </Container>
+        </SafeArea>
+      </BackgroundColor>
     </TouchableWithoutFeedback>
   )
 }
+
+const BackgroundColor = styled(View)`
+  flex: 1;
+
+  background-color: ${(props) => props.theme.colors.ui.white[400]};
+`
 
 const styles = StyleSheet.create({
   nextBtn: {
@@ -110,53 +117,39 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.white,
     marginHorizontal: '30%',
-   
   },
 })
 
 const Container = styled.View`
   flex: 1;
-  padding: 0 5% 0 5%;
   align-items: center;
-
-  background-color: ${colors.whiteDark};
+  padding-right: ${(props) => props.theme.space[20]};
+  padding-left: ${(props) => props.theme.space[20]};
 `
 
 const ButtonBox = styled.View`
   flex-direction: row;
-
-  width: 100%;
   justify-content: space-between;
-
-  margin-top: 25px;
+  width: 100%;
+  margin-top: ${(props) => props.theme.space[24]};
 `
 
 const Inner = styled.View`
-  margin: 15% 0 5% 0;
-  padding-top: 2%;
   width: 100%;
+  margin-top: ${(props) => props.theme.space[24]};
 `
 
 const Heading = styled.Text`
-  font-size:${(props)=>props.theme.sizes[24]};
-  font-weight: 600;
-  color: ${colors.black};
-  margin-bottom:${props=>props.theme.spacing[4]};
   text-align: left;
+  font-size: ${(props) => props.theme.sizes[24]};
+  font-weight: ${(props) => props.theme.fontWeight[600]};
+  color: ${(props) => props.theme.colors.ui.black[900]};
+  margin-bottom: ${(props) => props.theme.space[4]};
 `
 
 const SubText = styled.Text`
   text-align: left;
-  margin-top: ${(props) => props.theme.spacing[4]};
+  margin-top: ${(props) => props.theme.space[4]};
 `
-
-const InputBox = styled.View`
-  justify-content: center;
-  align-items: center;
-  background-color: red;
-  width: 100%;
-`;
-
-
 
 export default LoginPage
