@@ -8,12 +8,14 @@ import store from './store/store'
 import { name as appName } from './app.json'
 import Root from './Root'
 import Logout from './components/utils/Logout'
-
+import { ThemeProvider } from 'styled-components'
+import { theme } from './components/infastructure/theme'
 const App = () => {
   return (
     <Provider store={store}>
-    
-      <Root />
+      <ThemeProvider theme={theme}>
+        <Root />
+      </ThemeProvider>
     </Provider>
   )
 }
