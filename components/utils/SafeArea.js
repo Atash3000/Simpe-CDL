@@ -1,26 +1,16 @@
 import React from 'react'
-import { SafeAreaView, Platform, StyleSheet, Dimensions } from 'react-native'
+import { SafeAreaView, StatusBar } from 'react-native'
+import styled from 'styled-components'
+
+const UniversalSafeArea = styled(SafeAreaView)`
+  flex: 1;
+
+ 
+  ${StatusBar.currentHeight && `margin-top:${StatusBar.currentHeight}px`};
+`
 
 const SafeArea = (props) => {
-  const android = Platform.OS === 'android';
-  const largeScreen = Dimensions.get('window').height >700
-  //console.log(largeScreen)
-  return (
-    <SafeAreaView
-      style={{ flex: 1, paddingVertical: Platform.OS === 'ios' ? props.paddingVertical : 0 }}
-      {...props}
-    >
-      {props.children}
-    </SafeAreaView>
-  )
+  return <UniversalSafeArea>{props.children}</UniversalSafeArea>
 }
-
-const styles = StyleSheet.create({
-  x: {
-   
-
-}
-})
-
 
 export default SafeArea
