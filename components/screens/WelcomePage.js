@@ -56,12 +56,12 @@ const ArrowRight = styled(AntDesign)`
 
 const ButtonContinue = styled(TouchableOpacity)`
   width: 100%;
-  background-color: ${colors.primary};
+  background-color: ${(props)=>props.theme.colors.brand.primary[100]};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px;
+  padding: ${(props)=>props.theme.spacing[12]};
 `
 
 const SkipButton = styled(TouchableOpacity)`
@@ -69,7 +69,9 @@ const SkipButton = styled(TouchableOpacity)`
   background-color: ${colors.whiteLight};
   top: 8%;
   right: 3%;
-  padding: 10px 20px;
+  padding: ${(props) => props.theme.spacing[10]}
+    ${(props) => props.theme.spacing[12]};
+
   border-radius: 50px;
   display: flex;
   flex-direction: row;
@@ -130,8 +132,9 @@ const LogoBox = styled.View`
 `
 
 const Heading = styled.Text`
-  font-size: 22px;
+  font-size: ${(props)=>props.theme.sizes[20]};
   font-weight: 600;
+  text-align:center;
   margin-bottom: 5%;
 `
 export default WelcomePage
