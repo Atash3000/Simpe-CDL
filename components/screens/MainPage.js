@@ -12,8 +12,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
-  Dimensions,
-  Platform,
+  Vibration,
 } from 'react-native'
 import { capitalize } from '../helpers/functions'
 import NavigateBack from '../utils/NavigateBack'
@@ -27,6 +26,7 @@ const MainPage = (props) => {
   const [states] = useState(usaStates)
   const onPressHandler = (stateName) => {
     navigation.navigate('Course', { slug: stateName })
+    Vibration.vibrate([200])
   }
   const goBackToPrevPage = () => {
     navigation.navigate('Welcome')
@@ -36,9 +36,8 @@ const MainPage = (props) => {
     <Fragment>
       <BackgroundImage source={primaryImage} resizeMode="cover">
         <SafeArea>
-
           <Main>
-          <NavigateBack goBackToPrevPage={goBackToPrevPage} />
+            <NavigateBack goBackToPrevPage={goBackToPrevPage} />
             <Title>{capitalize('select')} your state</Title>
             <Inner>
               <ScrollView
@@ -114,7 +113,7 @@ const StateName = styled(Text)`
 `
 //@  background-color: red;
 const Main = styled.View`
-position:relative;
+  position: relative;
   flex: 1;
   align-items: center;
   justify-content: space-between;

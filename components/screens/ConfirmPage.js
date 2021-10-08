@@ -7,23 +7,22 @@ import colors from '../helpers/colors'
 
 import { capitalize, makeNumberLookGood } from '../helpers/functions'
 
-
-const ConfirmPage = ({navigation}) => {
-const [enteredCodeIsValid,setEnteredCodeIsValid] = useState(false)
+const ConfirmPage = ({ navigation }) => {
+  const [enteredCodeIsValid, setEnteredCodeIsValid] = useState(false)
   const userInfoFromServer = useSelector((state) => state.userRegister)
   const { error, loading, userNumber, userVerificationNumber } =
     userInfoFromServer
 
- // console.log(userInfoFromServer)
+  // console.log(userInfoFromServer)
 
-
-  const userVerNumToString = userVerificationNumber ? userVerificationNumber.toString() : '';
+  const userVerNumToString = userVerificationNumber
+    ? userVerificationNumber.toString()
+    : ''
   useEffect(() => {
     if (enteredCodeIsValid) {
-     
       navigation.replace('Home')
     }
-},[enteredCodeIsValid])
+  }, [enteredCodeIsValid])
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
@@ -62,11 +61,10 @@ const [enteredCodeIsValid,setEnteredCodeIsValid] = useState(false)
 const Container = styled.View`
   flex: 1;
   justify-content: flex-start;
-  background-color: ${colors.whiteDark};
+  background-color: ${(props) => props.theme.colors.ui.white[300]};
 `
 const CodeBox = styled.View`
   flex-direction: row;
-
   height: 10%;
   justify-content: center;
   align-items: center;

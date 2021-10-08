@@ -56,22 +56,21 @@ const ArrowRight = styled(AntDesign)`
 
 const ButtonContinue = styled(TouchableOpacity)`
   width: 100%;
-  background-color: ${(props)=>props.theme.colors.brand.primary};
+  background-color: ${(props) => props.theme.colors.brand.primary};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: ${(props)=>props.theme.space[12]};
+  padding: ${(props) => props.theme.space[12]};
 `
 
 const SkipButton = styled(TouchableOpacity)`
+  padding: ${(props) => props.theme.space[8]}
+  background-color:${(props) => props.theme.colors.ui.white[100]};
+  ${(props) => props.theme.space[16]};
   position: absolute;
-  background-color: ${colors.whiteLight};
-  top: 8%;
-  right: 3%;
-  padding: ${(props) => props.theme.space[10]}
-    ${(props) => props.theme.space[12]};
-
+  top: 10%;
+  right: 5%;
   border-radius: 50px;
   display: flex;
   flex-direction: row;

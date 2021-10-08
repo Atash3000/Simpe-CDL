@@ -1,17 +1,51 @@
 export const colors = {
   brand: {
-   
-    prime: '#ffeb00',
-    primary: {
-      100: '#ffeb00',
-      200: '#eedb00',
-      300: '#E3D322',
-      400: '#E9DD50',
-      500: '#bbac00',
-      600: '#E3D322',
-      700: '#E3D322',
-      800: '#FAE603',
-      900: '#EDE556',
+    primary: '#ffeb00',
+    secondary: '#E3D322',
+    tertiary: '#E9DD50',
+  },
+  ui: {
+    primary: '#262626',
+    secondary: '#757575',
+    tertiary: '',
+    quaternary: '',
+    disabled: '#9C9C9C',
+    error: '#EB1818',
+    success: '#138000',
+    black: {
+      100: '#4c4c4c',
+      200: '#3b3b3b',
+      300: '#333',
+      400: '#2a2a2a',
+      500: '#222',
+      600: '#191919',
+      700: '#111',
+      800: '#080808',
+      900: '#000',
     },
+    white: {
+      100: '#fff',
+      200: '#f6f6f6',
+      300: '#eee',
+      400: '#e5e5e5',
+      500: '#d4d4d4',
+      600: '#c3c3c3',
+      700: '#bbb',
+      800: '#aaa',
+      900: '#909090',
+    },
+  },
+  bg: {
+    primary: '',
+    secondary: '',
+  },
+
+  text: {
+    primary: '',
+    secondary: '',
+    disabled: '',
+    inverse: '',
+    error: '#D0421B',
+    success: '#138000',
   },
 }

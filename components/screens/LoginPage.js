@@ -7,6 +7,7 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Vibration,
 } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../helpers/colors'
@@ -28,6 +29,7 @@ const LoginPage = ({ navigation }) => {
     Keyboard.dismiss()
     navigation.navigate('ConfirmPage')
     dispatch(createNewUser(formattedValue))
+    Vibration.vibrate([200])
   }
 
   useEffect(() => {
