@@ -19,6 +19,7 @@ import PhoneInput from 'react-native-phone-number-input'
 import {useDispatch } from 'react-redux'
 
 import { createNewUser } from '../../store/actions/userActions'
+import { StyleSheetManager } from 'styled-components'
 
 const LoginPage = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -74,7 +75,9 @@ const LoginPage = ({ navigation }) => {
               activeOpacity={0.8}
               style={styles.nextBtn}
             >
-              <Text style={styles.textBtn}>next</Text>
+              <Text style={styles.textBtn}>
+                {capitalize('send')} {'sms'.toUpperCase()}
+              </Text>
               <AntDesign name="arrowright" size={26} color={colors.white} />
             </TouchableOpacity>
           )}
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.white,
     marginHorizontal: '30%',
-    textTransform: 'capitalize',
+   
   },
 })
 
@@ -135,16 +138,16 @@ const Inner = styled.View`
 `
 
 const Heading = styled.Text`
-  font-size: 25px;
+  font-size:${(props)=>props.theme.sizes[24]};
   font-weight: 600;
   color: ${colors.black};
-  margin-bottom: 5px;
+  margin-bottom:${props=>props.theme.spacing[4]};
   text-align: left;
 `
 
 const SubText = styled.Text`
   text-align: left;
-  margin-top: 5px;
+  margin-top: ${(props) => props.theme.spacing[4]};
 `
 
 const InputBox = styled.View`
@@ -152,6 +155,8 @@ const InputBox = styled.View`
   align-items: center;
   background-color: red;
   width: 100%;
-`
+`;
+
+
 
 export default LoginPage
