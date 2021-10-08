@@ -1,9 +1,15 @@
 import React from 'react'
-import { View, Text, TouchableOpacity,StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import colors from '../helpers/colors'
 
-
+let smallScreen = Dimensions.get('screen').height < 750
 
 const NavigateBack = (props) => {
   return (
@@ -14,18 +20,17 @@ const NavigateBack = (props) => {
     >
       <View style={styles.iconInner}>
         <AntDesign name="left" size={37} color={props.color || colors.white} />
-        <Text style={ [styles.iconText,props.color]}>back</Text>
+        <Text style={[styles.iconText, props.color]}>back</Text>
       </View>
     </TouchableOpacity>
   )
-};
-
-
+}
 
 const styles = StyleSheet.create({
   iconBox: {
     position: 'absolute',
-    top: '7%',
+
+    top: smallScreen ? '1.5%' : '3%',
     zIndex: 999,
     left: 10,
   },
@@ -37,8 +42,8 @@ const styles = StyleSheet.create({
   iconText: {
     fontSize: 22,
     fontWeight: '500',
-    color:colors.white,
- 
+    color: colors.white,
+
     textTransform: 'capitalize',
   },
 })
