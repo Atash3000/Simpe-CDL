@@ -21,7 +21,6 @@ import Logout from '../utils/Logout'
 import SafeArea from '../utils/SafeArea'
 import { StatusBar } from 'expo-status-bar'
 
-
 const MainPage = (props) => {
   const { navigation } = props
   const usaStates = data.map((el) => el.name).sort()
@@ -36,10 +35,10 @@ const MainPage = (props) => {
   return (
     <Fragment>
       <BackgroundImage source={primaryImage} resizeMode="cover">
-        <SafeArea paddingVertical={20}>
-          <NavigateBack goBackToPrevPage={goBackToPrevPage} />
+        <SafeArea>
 
           <Main>
+          <NavigateBack goBackToPrevPage={goBackToPrevPage} />
             <Title>{capitalize('select')} your state</Title>
             <Inner>
               <ScrollView
@@ -66,7 +65,7 @@ const MainPage = (props) => {
           </Main>
         </SafeArea>
       </BackgroundImage>
-      <StatusBar style='dark'/>
+      <StatusBar style="dark" />
     </Fragment>
   )
 }
@@ -104,8 +103,7 @@ const Title = styled(Text)`
   font-size: 30px;
   font-weight: 600;
   color: ${colors.blackLight};
-  margin-top:20%;
-  
+  margin-top: 20%;
 `
 
 const StateName = styled(Text)`
@@ -116,7 +114,7 @@ const StateName = styled(Text)`
 `
 //@  background-color: red;
 const Main = styled.View`
-
+position:relative;
   flex: 1;
   align-items: center;
   justify-content: space-between;
@@ -125,7 +123,6 @@ const Main = styled.View`
 const Inner = styled.View`
   height: 75%;
   width: 100%;
- 
 `
 
 const BackgroundImage = styled(ImageBackground)`
