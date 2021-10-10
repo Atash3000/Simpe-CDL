@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native'
 import styled from 'styled-components/native'
-import image from '../images/truck-8.jpg'
+import image from '../images/logo.png'
 import colors from '../helpers/colors'
 import { AntDesign } from '@expo/vector-icons'
 import { capitalize } from '../helpers/functions'
