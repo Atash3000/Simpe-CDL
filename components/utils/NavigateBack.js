@@ -19,8 +19,8 @@ const NavigateBack = (props) => {
       style={styles.iconBox}
     >
       <View style={styles.iconInner}>
-        <AntDesign name="left" size={37} color={props.color || colors.white} />
-        <Text style={[styles.iconText, props.color]}>back</Text>
+        <AntDesign name="left" size={30} color={colors.white} />
+        <Text style={styles.iconText}>back</Text>
       </View>
     </TouchableOpacity>
   )
