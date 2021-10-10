@@ -1,64 +1,34 @@
-const data = [
-  'new york',
-  'Arizona',
-  ' Georgia',
-  'florida',
-  'Maryland',
-  'montana',
-  'ohio',
-  'texas',
-  'california',
-  'new jersey',
-  'philadelphia',
-  'kansas',
-  'illinios',
-  'tennesi',
-]
 
-export default data
-
-export const questions = {
+export const data = {
   'general knowledge': [
     {
       id: 1,
-      title: 'Whats is the cold whearher ?',
+      name: 'general knowledge',
+      title: 'Whats is the tire load ?',
       options: {
-        a: 'cold whearher ',
-        b: 'danger wheather ',
-        c: 'hot whearher',
-        d: 'all above',
+        a: 'The maximum safe weight a tire can carry ',
+        b: 'The manimum safe weight a tire can carry  ',
+        c: 'The weight of a tire',
       },
-      
+      correctAnswer: 'The maximum safe weight a tire can carry ',
+      hint: 'Tire Load is defined as the maximum safe weight that a tire can carry at a specfied pressure.',
     },
     {
       id: 2,
-      title: 'how can driver be on road ?',
+      name: 'general knowledge',
+      title: 'You may be an aggressive driver if you :',
       options: {
-        a: 'cold whearher ',
-        b: 'danger wheather ',
-        c: 'hot whearher',
-        d: 'all above',
+        a: 'The maximum safe weight a tire can carry ',
+        b: 'The manimum safe weight a tire can carry  ',
+        c: 'The weight of a tire',
       },
+      correctAnswer: 'The maximum safe weight a tire can carry ',
+      hint: 'Tire Load is defined as the maximum safe weight that a tire can carry at a specfied pressure.',
     },
   ],
-  'combination vehicles': [],
-  'air brake': [],
   hazmat: [],
-  'doubles/trailers': [],
+  'air brake': [],
+  'school bus': [],
+  tanker: [],
 }
-
-
-export const allData = [
-  {
-    id: 'NY',
-    name: 'New York',
-    questions: {
-      "general knowledge": [{
-        
-      }]
-    }
-  },
-  
-
-]
 
