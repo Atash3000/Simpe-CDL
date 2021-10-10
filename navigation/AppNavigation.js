@@ -7,6 +7,7 @@ import MainPage from '../components/screens/MainPage'
 import QuestionPage from '../components/screens/QuestionPage'
 import CoursePage from '../components/screens/CoursePage'
 import TestPath from '../components/screens/TestPath'
+import RoadMap from '../components/screens/RoadMap'
 const Stack = createNativeStackNavigator()
 
 function AppNavigation(props) {
@@ -16,9 +17,9 @@ function AppNavigation(props) {
       initialRouteName={props.isLoggedIn ? 'Home' : 'Welcome'}
     >
       <Stack.Screen name="Home" component={MainPage} />
-      <Stack.Screen name="Question" component={QuestionPage} />
       <Stack.Screen name="Course" component={CoursePage} />
-
+      <Stack.Screen name="RoadMap" component={RoadMap} />
+      <Stack.Screen name="Question" component={QuestionPage} />
       <Stack.Screen name="Welcome" component={WelcomePage} />
       <Stack.Screen name="ConfirmPage" component={ConfirmPage} />
       <Stack.Screen name="Login" component={LoginPage} />
