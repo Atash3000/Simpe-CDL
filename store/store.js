@@ -1,18 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { checkAnswerReducer, userLogedInReducers, userSigUpReducer } from './reducers/userReducers';
-import { getData } from './storage/asyncStorage';
+import { checkAnswerReducer, questionSwitcherReducer, userLogedInReducers, userSigUpReducer } from './reducers/userReducers';
+import { getDateFromStorage } from './storage/asyncStorage'
 
 
 
     
-let res = getData('userInfo').then(response=>console.log(response))
        
 const initailState = {
-  userLogin: {
-    selectedState: 1235,
-    //userInfo: getData('userInfo'),
+  // userAnswers:getDateFromStorage('correctAnswers'),
+  userAnswers: {
+    answerOption: {
+      correctAnswers: getDateFromStorage('correctAnswers'),
+      wrongAnswers: getDateFromStorage('wrongAnswers'),
+    },
+  },
+  questionCard: {
+    cart: ['123'],
   },
 }
 
@@ -20,6 +25,7 @@ const reducer = combineReducers({
   userRegister: userSigUpReducer,
   userLogin: userLogedInReducers,
   userAnswers: checkAnswerReducer,
+  questionCard: questionSwitcherReducer,
 })
 
 const store = createStore(reducer, initailState, applyMiddleware(thunk))

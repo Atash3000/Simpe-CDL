@@ -6,31 +6,32 @@ import {
 } from 'react-native'
 import styled from 'styled-components'
 import primaryImage from '../images/primary-4.png'
-import { questions } from '../helpers/data'
+import {data } from '../helpers/data'
 import NavigateBack from '../utils/NavigateBack'
 import Hamburger from '../utils/Hamburger'
 import SafeArea from '../utils/SafeArea'
 import { StatusBar } from 'expo-status-bar'
 import UserProgressBar from '../utils/UserProgressBar'
 import MiniCard from '../utils/MiniCard'
+import { useDispatch } from 'react-redux'
+import { USER_ANSWER_REQUEST } from '../../store/constants/userConstants'
 
 const RoadMap = (props) => {
   const { navigation, route } = props
- const { testName } = route.params
+  const { testName } = route.params
+  const dispatch = useDispatch()
 
+  const chapters = Object.keys(data[testName])
 
-  const chapters = [1, 2, 3, 4, 5, 6]
-  const perChapter = chapters.map((element) => (
-    <MiniCard
-      key={element}
-      chapter={element}
-      onPress={() =>
-        navigation.navigate('Question', {
+  const pressHadler = (val) => {
+    dispatch({type:USER_ANSWER_REQUEST})
+      navigation.navigate('Question', {
           testName: testName,
-          chapter: element,
+          chapter: val,
         })
-      }
-    />
+  }
+  const perChapter = chapters.map((element) => (
+    <MiniCard key={element} chapter={element} onPress={()=>pressHadler(element)} />
   ))
   
 
@@ -46,7 +47,7 @@ const RoadMap = (props) => {
               <StyledProggressBar color={'yellow'} />
               <Info>
                 <InfoText>Total 325</InfoText>
-                <InfoText>familiar 0</InfoText>
+                <InfoText>Mistakes 0</InfoText>
                 <InfoText>Mastered 12</InfoText>
               </Info>
             </Main>

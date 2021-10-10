@@ -14,7 +14,7 @@ const Hamburger = ({navigation}) => {
 }
 const styles = StyleSheet.create({
   container: {
-    top: '7%',
+    top: '2%',
     right: '5%',
     zIndex:999,
     position: 'absolute',

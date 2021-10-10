@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { View, Text, Pressable } from 'react-native'
 import styled from 'styled-components'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-
+import { FontAwesome } from '@expo/vector-icons'
+// <FontAwesome name="unlock-alt" size={24} color="black" />
 const MiniCard = (props) => {
-  const [isLocked, setIsLocked] = useState(true)
+  const [isLocked, setIsLocked] = useState(()=>props.chapter!=='chapter 1')
   return (
     <Pressable {...props}>
       <Container>
         <Main>
-          <Icon name={isLocked ? 'lock' : 'lock-open'} />
+          <Icon name={isLocked ? 'lock' : 'unlock-alt'} />
         </Main>
-      <ChapterText>chapter{ props.chapter}</ChapterText>
+      <ChapterText>{ props.chapter}</ChapterText>
       </Container>
     </Pressable>
   )
@@ -32,9 +32,9 @@ const Main = styled(View)`
   align-items: center;
   border-radius: 10px;
 `
-const Icon = styled(MaterialCommunityIcons)`
+const Icon = styled(FontAwesome)`
   color: ${(props) => props.theme.colors.ui.white[200]};
-  font-size:${props=>props.theme.sizes[28]}
+  font-size: ${(props) => props.theme.sizes[28]};
 `
 
 const ChapterText = styled(Text)`

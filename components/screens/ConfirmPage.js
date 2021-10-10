@@ -13,7 +13,6 @@ const ConfirmPage = ({ navigation }) => {
   const { error, loading, userNumber, userVerificationNumber } =
     userInfoFromServer
 
-  // console.log(userInfoFromServer)
 
   const userVerNumToString = userVerificationNumber
     ? userVerificationNumber.toString()
@@ -59,9 +58,9 @@ const ConfirmPage = ({ navigation }) => {
 }
 
 const Container = styled.View`
+  background-color: ${(props) => props.theme.colors.ui.white[300]};
   flex: 1;
   justify-content: flex-start;
-  background-color: ${(props) => props.theme.colors.ui.white[300]};
 `
 const CodeBox = styled.View`
   flex-direction: row;

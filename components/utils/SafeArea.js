@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 const UniversalSafeArea = styled(SafeAreaView)`
   flex: 1;
-
- 
   ${StatusBar.currentHeight && `margin-top:${StatusBar.currentHeight}px`};
 `
 

@@ -1,117 +1,75 @@
-import React, { useState } from 'react'
+import React, { Fragment } from 'react'
 
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
-import colors from '../helpers/colors'
-import primaryImage from '../images/primary-2.png'
+import { View, Text, ImageBackground} from 'react-native'
+import primaryImage from '../images/primary-3.png'
 import { AntDesign } from '@expo/vector-icons'
-import { questions } from '../helpers/data'
+import { data } from '../helpers/data'
 import CourseItem from '../utils/CourseItem'
 import NavigateBack from '../utils/NavigateBack'
-import { capitalize } from '../helpers/functions'
-import Logout from '../utils/Logout'
 import SafeArea from '../utils/SafeArea'
 import styled from 'styled-components'
+import { StatusBar } from 'expo-status-bar'
 
-const CoursePage = (props) => {
-  const courseItems = Object.keys(questions)
-  const { navigation, route } = props
-  const { slug } = route.params
-
-  const [selectedState, setSelectedState] = useState(slug)
-  const openQuestionPage = (testType) => {
-    navigation.navigate('Question', { testType: testType })
+const CoursePage = ({ navigation, route }) => {
+  const courseItems = Object.keys(data)
+  const { slug: selectedState } = route.params
+  const moveToNextPage = (testName) => {
+    navigation.navigate('RoadMap', { testName: testName })
   }
-  return (
-    <ImageBackground
-      source={primaryImage}
-      resizeMode="cover"
-      style={{ flex: 1 }}
-    >
-      <SafeArea paddingVertical={20}>
-        <Container>
-          <NavigateBack goBackToPrevPage={() => navigation.goBack()} />
 
-          <View style={styles.top}>
-            <Text
-              style={[
-                styles.heading,
-                { textTransform: 'uppercase', marginBottom: '5%' },
-              ]}
-            >
-              {selectedState} CDL
-            </Text>
-            <Text style={styles.heading}>{capitalize('select')} test type</Text>
-          </View>
-          <View style={styles.container}>
-            {courseItems.slice(0,1).map((el) => (
-              <CourseItem
-                style={styles.box}
-                title={el}
-                textStyle={styles.textStyle}
-                key={el}
-                onPressHandler={openQuestionPage.bind(this, el)}
-              />
-            ))}
-          </View>
-        </Container>
-      </SafeArea>
-    </ImageBackground>
+  const state = selectedState + ' ' + 'cdl'.toLocaleUpperCase()
+  const Card = courseItems.map((course) => (
+    <CourseItem
+      key={course}
+      title={course}
+      onPress={moveToNextPage.bind(this, course)}
+    />
+  ))
+  return (
+    <Fragment>
+      <BackgroundImage source={primaryImage} resizeMode="cover">
+        <SafeArea>
+          <Container>
+            <NavigateBack goBackToPrevPage={() => navigation.goBack()} />
+            <Heading>
+              <HeadingText>{state}</HeadingText>
+            </Heading>
+            <Main>{Card}</Main>
+          </Container>
+        </SafeArea>
+      </BackgroundImage>
+      <StatusBar style="light" />
+    </Fragment>
   )
 }
-const styles = StyleSheet.create({
-  bgImg: {
-    position: 'relative',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-  },
 
-  heading: {
-    fontSize: 25,
-    color: colors.blackLight,
-    fontWeight: '600',
-    letterSpacing: 1,
-  },
-  top: {
-    alignItems: 'center',
-    marginBottom: '10%',
-    backgroundColor:'green',
-  },
-
-  container: {
-    backgroundColor: 'white',
-    width: '100%',
-    height: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  box: {
-    backgroundColor: colors.white,
-    borderRadius: 25,
-    marginBottom: '5%',
-
-    width: '80%',
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-    elevation: 24,
-  },
-
-  textStyle: {
-    textAlign: 'left',
-
-    fontSize: 18,
-    padding: 15,
-    fontWeight: '500',
-    textTransform: 'uppercase',
-  },
-})
-
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+`
 
 const Container = styled(View)`
-flex:1;
-position:relative;
-background-color:red;
+  flex: 1;
+  position: relative;
+  justify-content: space-around;
+`
 
-`;
+// @ background-color: red;
+const Heading = styled(View)`
+  height: 20%;
+
+  justify-content: space-around;
+`
+
+const HeadingText = styled(Text)`
+  color: ${(props) => props.theme.colors.ui.white[100]};
+  font-size: ${(props) => props.theme.sizes[28]};
+  font-weight :${(props) => props.theme.fontWeight[700]}
+  text-align:center;
+`
+
+const Main = styled(View)`
+  padding: 0 15px;
+  flex: 0.8;
+`
+
 export default CoursePage

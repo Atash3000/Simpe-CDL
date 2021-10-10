@@ -8,6 +8,10 @@ import {
   USER_LOG_OUT,
   USER_ANSWER_CORRECT,
   USER_ANSWER_WRONG,
+  USER_ANSWER_REQUEST,
+  USER_ANSWER_RESET,
+  ON_NEXT_QUESTION,
+  ON_CURRENT_QUESTION,
 } from '../constants/userConstants'
 import axios from 'axios'
 import { storeData } from '../storage/asyncStorage'
@@ -78,19 +82,44 @@ export const logout = () => async (dispatch) => {
   })
 }
 
-export const checkUserAnswer = (answer, correctAnswer,hint) => async(dispatch) => {
-  if (answer === correctAnswer) {
+export const checkUserAnswer =
+  (question, answer, correctAnswer, Vibration) =>
+   (dispatch, getState) => {
     dispatch({
-      type: USER_ANSWER_CORRECT,
-      payload: answer,
+      type: USER_ANSWER_REQUEST,
+      payload: {},
     })
-       await storeData('correctAnswers', [answer])
-  } else {
-    dispatch({
-      type: USER_ANSWER_WRONG,
-      payload: hint,
-    })
-       await storeData('wrongAnswers', [answer])
+    
+      dispatch({
+        type: USER_ANSWER_CORRECT,
+        payload: { question, answer },
+      })
+    //  await storeData('correctAnswers',question.id)
 
+   
+      dispatch({
+        type: USER_ANSWER_WRONG,
+        payload: { question, answer,Vibration },
+      })
+      //Vibration.vibrate(2000)
+
+     // await storeData('wrongAnswers', question.id)
+ 
+
+   // console.log(getState().userAnswers.correctAnswers, 'get State functons')
+    // await AsyncStorage.removeItem('correctAnswers')
+    // await AsyncStorage.removeItem('wrongAnswers')
   }
+
+
+
+export const moveToNextQuestion = (questionsArr) => (dispatch, getState) => {
+  dispatch({
+    type: ON_CURRENT_QUESTION,
+    payload: questionsArr,
+  })
+  dispatch({
+    type: ON_NEXT_QUESTION,
+    payload: questionsArr,
+  })
 }
