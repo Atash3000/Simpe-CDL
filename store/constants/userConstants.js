@@ -8,3 +8,7 @@ export const USER_LOGGED_IN_FAIL = 'USER_LOGGED_IN_FAIL';
 
 export const USER_LOG_OUT = 'USER_LOG_OUT';
 export const USER_CLEAN_UP = 'USER_CLEAN_UP'
+
+
+export const USER_ANSWER_CORRECT = 'USER_ANSWER_CORRECT';
+export const USER_ANSWER_WRONG = 'USER_ANSWER_WRONG'
