@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import colors from '../helpers/colors'
-import primaryImage from '../images/primary-2.png'
+import primaryImage from '../images/primary-3.png'
 import { AntDesign } from '@expo/vector-icons'
 import data from '../helpers/states'
 import styled from 'styled-components'
@@ -12,11 +12,9 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
-  Vibration,
 } from 'react-native'
 import { capitalize } from '../helpers/functions'
 import NavigateBack from '../utils/NavigateBack'
-import Logout from '../utils/Logout'
 import SafeArea from '../utils/SafeArea'
 import { StatusBar } from 'expo-status-bar'
 
@@ -26,7 +24,6 @@ const MainPage = (props) => {
   const [states] = useState(usaStates)
   const onPressHandler = (stateName) => {
     navigation.navigate('Course', { slug: stateName })
-    Vibration.vibrate([200])
   }
   const goBackToPrevPage = () => {
     navigation.navigate('Welcome')
@@ -99,9 +96,9 @@ const styles = StyleSheet.create({
 })
 
 const Title = styled(Text)`
-  font-size: 30px;
-  font-weight: 600;
-  color: ${colors.blackLight};
+  font-size: ${(props) => props.theme.sizes[28]};
+  color: ${(props) => props.theme.colors.ui.white[300]};
+  font-weight: ${(props) => props.theme.fontWeight[600]};
   margin-top: 20%;
 `
 
@@ -109,7 +106,7 @@ const StateName = styled(Text)`
   font-size: 20px;
   font-weight: 700;
   text-transform: capitalize;
-  color: ${colors.blackLight};
+  color: ${props=>props.theme.colors.ui.black[100]}};
 `
 //@  background-color: red;
 const Main = styled.View`
