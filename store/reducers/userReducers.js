@@ -1,4 +1,6 @@
 import {
+  USER_ANSWER_CORRECT,
+  USER_ANSWER_WRONG,
   USER_LOGGED_IN_FAIL,
   USER_LOGGED_IN_REQUEST,
   USER_LOGGED_IN_SUCCESS,
@@ -52,5 +54,17 @@ export const userLogedInReducers = (state = initState2, action) => {
       return {}
     default:
       return state
+  }
+};
+
+
+
+export const checkAnswerReducer = (state = { isAnswerCorrect:false}, action) => {
+  switch (action.type) {
+    case USER_ANSWER_CORRECT:
+      return { ...state, isAnswerCorrect: true , status:action.payload }
+    case USER_ANSWER_WRONG:
+      return { ...state, isAnswerCorrect: false, hint: action.payload }
+    default: return state;
   }
 }
