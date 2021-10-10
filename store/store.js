@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { userLogedInReducers, userSigUpReducer } from './reducers/userReducers';
+import { checkAnswerReducer, userLogedInReducers, userSigUpReducer } from './reducers/userReducers';
 import { getData } from './storage/asyncStorage';
 
 
@@ -19,7 +19,7 @@ const initailState = {
 const reducer = combineReducers({
   userRegister: userSigUpReducer,
   userLogin: userLogedInReducers,
- 
+  userAnswers: checkAnswerReducer,
 })
 
 const store = createStore(reducer, initailState, applyMiddleware(thunk))
