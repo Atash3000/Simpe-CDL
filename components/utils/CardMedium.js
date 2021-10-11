@@ -4,8 +4,6 @@ import { AntDesign } from '@expo/vector-icons'
 import {
   View,
   Text,
-  Pressable,
-  Alert,
   Vibration,
   TouchableOpacity,
 } from 'react-native'
@@ -16,12 +14,12 @@ import { useSelector, useDispatch } from 'react-redux'
 const CardMedium = ({ question, onPress }) => {
   const dispatch = useDispatch()
   const answerState = useSelector((state) => state.userAnswers)
-  const { isAnswerCorrect, showHint, showButton,isButtonDisabled } =
+  const { isAnswerCorrect, showHint, showButton, isButtonDisabled } =
     answerState
   const { title, options, id, hint, correctAnswer } = question
   const optionsArr = Object.values(options)
-  const [indexOfWrongAnswer,setIndexOfWrongAnswer] = useState(-1)
-  const [indexOfCorrectAnswer,setIndexOfCorrectAnswer] = useState(-1) 
+  const [indexOfWrongAnswer, setIndexOfWrongAnswer] = useState(-1)
+  const [indexOfCorrectAnswer, setIndexOfCorrectAnswer] = useState(-1)
   const checkAnswer = (userAnswer) => {
     if (!userAnswer) {
       return
@@ -30,7 +28,6 @@ const CardMedium = ({ question, onPress }) => {
     dispatch(checkUserAnswer(question, userAnswer))
     setIndexOfCorrectAnswer(optionsArr.indexOf(correctAnswer))
     setIndexOfWrongAnswer(optionsArr.indexOf(userAnswer))
-
   }
 
   useEffect(() => {
@@ -39,6 +36,7 @@ const CardMedium = ({ question, onPress }) => {
     }
   }, [isAnswerCorrect])
 
+  //
   return (
     <Container>
       <Title>{title}</Title>
@@ -91,6 +89,7 @@ const Title = styled(Text)`
 
 const Main = styled(View)`
   background-color: ${(props) => props.theme.colors.ui.black[400]};
+
   margin: 5px 0;
   border-radius: 10px;
   padding: 0 8px;
@@ -106,7 +105,6 @@ const QuestionText = styled(Text)`
 `
 
 const HintContainer = styled(View)`
-
   padding: 5px 10px;
   box-shadow: 1px 1px 3px;
   align-items: center;
