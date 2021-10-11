@@ -20,7 +20,8 @@ const RoadMap = (props) => {
   const { navigation, route } = props
   const { testName } = route.params
   const dispatch = useDispatch()
-
+  const testSection = data[testName]
+  const questinsLength = Object.keys(testSection).length + 1
   const chapters = Object.keys(data[testName])
 
   const pressHadler = (val) => {
@@ -46,7 +47,7 @@ const RoadMap = (props) => {
               <Title>{testName}</Title>
               <StyledProggressBar color={'yellow'} />
               <Info>
-                <InfoText>Total 325</InfoText>
+                <InfoText>Total {questinsLength}</InfoText>
                 <InfoText>Mistakes 0</InfoText>
                 <InfoText>Mastered 12</InfoText>
               </Info>
