@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useEffect } from 'react'
 
 import { View, Text, ImageBackground} from 'react-native'
 import primaryImage from '../images/primary-3.png'
@@ -9,12 +9,19 @@ import NavigateBack from '../utils/NavigateBack'
 import SafeArea from '../utils/SafeArea'
 import styled from 'styled-components'
 import { StatusBar } from 'expo-status-bar'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveExamInfo } from '../../store/actions/testActions'
 
 const CoursePage = ({ navigation, route }) => {
+     const examState = useSelector((state) => state.examState)
+     console.log( examState, 'CoursPage')
+  const dispatch = useDispatch()
   const courseItems = Object.keys(data)
   const { slug: selectedState } = route.params
   const moveToNextPage = (testName) => {
+   dispatch(saveExamInfo(selectedState,testName))
     navigation.navigate('RoadMap', { testName: testName })
+   
   }
 
   const state = selectedState + ' ' + 'cdl'.toLocaleUpperCase()
@@ -25,6 +32,10 @@ const CoursePage = ({ navigation, route }) => {
       onPress={moveToNextPage.bind(this, course)}
     />
   ))
+
+  useEffect(() => {
+   // dispatch(saveExamInfo(selectedState))
+  }, [])
   return (
     <Fragment>
       <BackgroundImage source={primaryImage} resizeMode="cover">

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import styled from 'styled-components'
-import { checkUserAnswer } from '../../store/actions/userActions'
+import { checkUserAnswer, checkUserDesition } from '../../store/actions/userActions'
 import { useSelector, useDispatch } from 'react-redux'
 
 const CardMedium = ({ question, onPress }) => {
@@ -24,7 +24,6 @@ const CardMedium = ({ question, onPress }) => {
     if (!userAnswer) {
       return
     }
-
     dispatch(checkUserAnswer(question, userAnswer))
     setIndexOfCorrectAnswer(optionsArr.indexOf(correctAnswer))
     setIndexOfWrongAnswer(optionsArr.indexOf(userAnswer))

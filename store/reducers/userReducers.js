@@ -121,3 +121,21 @@ export const questionSwitcherReducer = (state = { cart: [] }, action) => {
     // const [randomIndex,setRandomIndex] = useState(()=> Math.floor(Math.random() * len+1))
   }
 }
+
+
+export const generateQuestionReducer = (state = { questions: [] }, action) => {
+  switch (action.type) {
+    case "ON_CURRENT_QUESTION":
+      return { ...state }
+    case "ON_NEXT_QUESTION":
+      return { ...state, next: true }
+    default: return state;
+  }
+};
+
+
+
+export const userDecitionReducer = (state = {}, action) => {
+  console.log(state)
+  return state
+}

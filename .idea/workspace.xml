@@ -6,13 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="3ac3fd76-d117-4e7b-b3a1-06ccebb8bd5e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/ConfirmPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/ConfirmPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infastructure/theme/fonts.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infastructure/theme/fonts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infastructure/theme/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infastructure/theme/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infastructure/theme/sizes.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infastructure/theme/sizes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/infastructure/theme/space.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/infastructure/theme/space.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/screens/CoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/CoursePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/MainPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/screens/QuestionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/QuestionPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/RoadMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/RoadMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/WelcomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/WelcomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/utils/CardMedium.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/CardMedium.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/Hamburger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/Hamburger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/utils/SafeArea.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/SafeArea.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/utils/CourseItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/utils/CourseItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/actions/userActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/constants/userConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/constants/userConstants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/reducers/userReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducers/userReducers.js" afterDir="false" />
@@ -53,10 +61,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="101" y="94" width="1060" height="440" key="AVDManager" timestamp="1633826856441">
+    <state x="95" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634052350633">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="101" y="94" width="1060" height="440" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1633826856441" />
+    <state x="95" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1634052350633" />
+    <state x="101" y="94" width="1060" height="440" key="AVDManager" timestamp="1634072458769">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="101" y="94" width="1060" height="440" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1634072458769" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1630452071968">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

@@ -2,26 +2,27 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Alert, Pressable } from 'react-native'
 import styled from 'styled-components'
 import { ProgressBar, Colors } from 'react-native-paper'
+import UserProgressBar from './UserProgressBar'
 
 const CourseItem = (props) => {
-  const [progres, setProgres] = useState(0)
   return (
     <Pressable onPress={props.onPress}>
       <Card>
         <Title>{props.title}</Title>
-        <ProgressStatus>{progres}%</ProgressStatus>
-        <Progress color={'#fff'} progress={progres} />
+
+        <StyledProgressBar color={'#fff'} />
       </Card>
     </Pressable>
   )
 }
 
 const Card = styled(View)`
-  background-color: ${(props) => props.theme.colors.ui.black[600]};
-  padding: 10px 20px;
+  background-color: ${(props) => props.theme.colors.ui.black[400]};
+  padding: ${(props) => props.theme.responsive(props, 10, 1)}
+    ${(props) => props.theme.responsive(props, 20, 1)};
   border-radius: 12px;
-  box-shadow: 0px 4px 4px black;
-  margin: 5px 0;
+  box-shadow: 3px 4px 2px black;
+  margin-bottom: ${(props) => props.theme.responsive(props, 10, 1)};
 `
 
 const Title = styled(Text)`
@@ -32,16 +33,12 @@ const Title = styled(Text)`
   text-transform: capitalize;
 `
 
-const ProgressStatus = styled(Text)`
-  color: white;
-  margin: 2px 0;
-`
 
-const Progress = styled(ProgressBar)`
+
+const StyledProgressBar = styled(UserProgressBar)`
   height: 3px;
   margin: 5px 0;
-
-  background-color: #f7f7f7;
+  background-color:${props=>props.theme.colors.ui.black[100]} ;
 `
 
 export default CourseItem

@@ -11,7 +11,7 @@ import { StatusBar } from 'expo-status-bar'
 import UserProgressBar from '../utils/UserProgressBar'
 import CardMedium from '../utils/CardMedium'
 import { useSelector, useDispatch } from 'react-redux'
-import { moveToNextQuestion } from '../../store/actions/userActions'
+import { generateQuestion, moveToNextQuestion } from '../../store/actions/userActions'
 
 const QuestionPage = (props) => {
   const dispatch = useDispatch()
@@ -28,11 +28,11 @@ const QuestionPage = (props) => {
   const [randomQuestion, setRandomQuestion] = useState(
     questionsArr[randomIndex]
   )
-  console.log(answerState)
+  //console.log(answerState)
   const nextQuestionButton = () => {
 
-    dispatch(moveToNextQuestion(questionsArr))
-   
+   // dispatch(moveToNextQuestion(questionsArr))
+   dispatch(generateQuestion(questionsArr))
   }
 
   return (

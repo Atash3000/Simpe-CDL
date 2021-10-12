@@ -12,6 +12,9 @@ import {
   USER_ANSWER_RESET,
   ON_NEXT_QUESTION,
   ON_CURRENT_QUESTION,
+  ON_QUESTION_SUCCESS,
+  ON_QUESTION_FAIL,
+  ON_QUESTION_RESET,
 } from '../constants/userConstants'
 import axios from 'axios'
 import { storeData } from '../storage/asyncStorage'
@@ -83,12 +86,12 @@ export const logout = () => async (dispatch) => {
 }
 
 export const checkUserAnswer =
-  (question, answer, correctAnswer, Vibration) =>
+  (question, answer, Vibration) =>
    (dispatch, getState) => {
-    dispatch({
-      type: USER_ANSWER_REQUEST,
-      payload: {},
-    })
+    // dispatch({
+    //   type: USER_ANSWER_REQUEST,
+    //   payload: {},
+    // })
     
       dispatch({
         type: USER_ANSWER_CORRECT,
@@ -121,5 +124,34 @@ export const moveToNextQuestion = (questionsArr) => (dispatch, getState) => {
   dispatch({
     type: ON_NEXT_QUESTION,
     payload: questionsArr,
+  })
+}
+
+
+export const generateQuestion = (questionsArr) => (dispatch) => {
+  dispatch({
+    type: "ON_CURRENT_QUESTION",
+    payload: questionsArr
+  })
+
+  dispatch({
+    type: "ON_NEXT_QUESTION",
+    payload: questionsArr
+  })
+};
+
+
+export const checkUserDesition= (questionsArr, userAnswer) => (dispatch) => {
+  dispatch({
+    type: ON_QUESTION_SUCCESS,
+    payload: { questionsArr, userAnswer }
+  });
+  dispatch({
+    type: ON_QUESTION_FAIL,
+    payload: { questionsArr, userAnswer },
+  })
+  dispatch({
+    type: ON_QUESTION_RESET,
+    payload:{}
   })
 }

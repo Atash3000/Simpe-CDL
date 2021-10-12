@@ -14,5 +14,5 @@ mongoose
 
 process.on('unhandledRejection', (err) => console.log(err.name, err.message))
 
-const PORT = process.env.PORT || 5050
+const PORT = process.env.PORT || 7070
 app.listen(PORT, () => console.log('Server has started on port ' + PORT))
